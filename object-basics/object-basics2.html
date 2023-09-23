@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Object basics: Task 2</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <section class="preview"></section>
+
+  </body>
+  <script>
+
+    let bandInfo;
+
+    const band = {
+      name: 'PXNDX',
+      nationality: 'Mexican',
+      genre: 'Rock',
+      members: 4,
+      formed: 1996,
+      split: 2016,
+      albums: [
+        {
+          name: 'Arroz con leche',
+          released: 2000,
+        },
+        {
+          name: 'La revancha del príncipe charro',
+          released: 2002,
+        },
+        {
+          name: 'Para ti con desprecio',
+          released: 2005,
+        },
+        {
+          name: 'Amantes Sunt Amentes',
+          released: 2006,
+        },
+        {
+          name: 'Poetics',
+          released: 2009,
+        },
+        {
+          name: 'Bonanza',
+          released: 2012,
+        },
+        {
+          name: 'Sangre fría',
+          released: 2013,
+        },
+      ]
+    };
+
+    bandInfo = `${band.name} was a ${band.nationality} ${band.genre} Band 
+                formed by ${band.members} members since ${band.formed}, 
+                until their split on ${band.split} after ${band.split - band.formed} 
+                years of being active. Their debut album was ${band.albums[0].name} 
+                released in ${band.albums[0].released}.`;
+
+    const section = document.querySelector('section');
+    let para1 = document.createElement('p');
+    para1.textContent = bandInfo;
+    section.appendChild(para1);
+
+  </script>
+
+</html>
