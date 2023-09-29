@@ -7,7 +7,6 @@ class CharacterCard extends LitElement {
 
   constructor() {
     super();
-    this.character = [];
   }
 
   render() {
