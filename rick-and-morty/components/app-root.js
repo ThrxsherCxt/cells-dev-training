@@ -6,39 +6,34 @@ import './card-navigation.js';
 
 class AppRoot extends LitElement {
   static properties = {
-    character: { type: Array },
-    characters: { type: Array },
-    direction: { type: String },
-    totalItems: { type: Number },
+    isDataLoaded: { type: Boolean },
   };
 
   constructor() {
     super();
-    this.characters = [];
-    this.totalItems = 0;
+    this.isDataLoaded = false;
   }
 
   handleDataLoaded(event) {
-    this.characters = event.detail;
-    this.totalItems = this.characters.length;
+    this.isDataLoaded = true;
+
+    // Need to perform update manually because the data-manager element does not currently exist because it is conditionally rendered by isDataLoaded
+    this.requestUpdate();
+    this.performUpdate();
+
+    // Now the data-manager element is being rendered so it can be accessed
+    const dataManager = this.shadowRoot.querySelector('data-manager');
+    
+    dataManager.characters = event.detail
+    dataManager.totalItems = event.detail.length
   }
 
   handleDirection(event) {
-    this.direction = event.detail;
-    this.shadowRoot.querySelector('data-manager').dispatchEvent(
-      new CustomEvent(
-        'direction-changed',
-        {
-          bubbles: true,
-          composed: true,
-          detail: this.direction
-        }
-      )
-    );
+    this.shadowRoot.querySelector('data-manager').handleDirection(event.detail)
   }
 
   updateCharacter(event) {
-    this.character = event.detail;
+    this.shadowRoot.querySelector('character-card').character = event.detail;
   }
 
   render() {
@@ -49,16 +44,13 @@ class AppRoot extends LitElement {
           @data-loaded="${this.handleDataLoaded}">
         </data-provider>
 
-        ${this.characters.length > 0
+        ${this.isDataLoaded
           ? html`
               <data-manager
-                .characters="${this.characters}"
-                .totalItems="${this.totalItems}"
                 @update-character="${this.updateCharacter}">
               </data-manager>
 
-              <character-card 
-                .character="${this.character}">
+              <character-card>
               </character-card>
 
               <card-navigation 
