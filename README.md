@@ -8,3 +8,6 @@ json: 2 Ejercicios de Peticiones por HTTP (la carpeta json2 contiene 2 versiones
 lit: 2 Ejercicios de LitElement
 
 pokedex: Ejercicio LitElement Character API (Ocupar live server o similar (xampp, etc...), ya que por defecto tiene bloqueo de CORS).
+
+
+rick-and-morty: Segundo ejercicio de LitElement Character API, el cual contiene las correcciones adecuadas con la estructura solicitada.
