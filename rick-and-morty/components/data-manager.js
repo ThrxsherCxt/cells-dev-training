@@ -21,11 +21,6 @@ class DataManager extends LitElement {
     }
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('direction-changed', this.handleDirection);
-  }
-
   handleDirection(event) {
 
     this.direction = event.detail;
